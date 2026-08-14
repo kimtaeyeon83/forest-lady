@@ -45,6 +45,9 @@ window.PHOTOS = [
   { id: "2025-profile", year: 2025, title: "프로필 촬영", kind: "그 밖", thumb: "photos/2025-profile-t.jpg", full: "photos/2025-profile.jpg", w: 522, h: 390 },
   { id: "2025-marathon", year: 2025, title: "10km 마라톤", kind: "그 밖", thumb: "photos/2025-marathon-t.jpg", full: "photos/2025-marathon.jpg", w: 300, h: 225 },
   { id: "2025-popup", year: 2025, title: "K-FARM DEMON HUNTERS 팝업스토어", kind: "축제·부스", thumb: "photos/2025-popup-t.jpg", full: "photos/2025-popup.jpg", w: 1800, h: 1199 },
+  { id: "2025-wedding", year: 2025, title: "결혼식장에서", kind: "경조사", thumb: "photos/2025-wedding-t.jpg", full: "photos/2025-wedding.jpg", w: 1800, h: 1350 },
+  { id: "2025-duper", year: 2025, title: "Duper 커피에서", kind: "밥모임", thumb: "photos/2025-duper-t.jpg", full: "photos/2025-duper.jpg", w: 1351, h: 1800 },
+  { id: "2025-sofa", year: 2025, title: "카페에 모여 앉아", kind: "밥모임", thumb: "photos/2025-sofa-t.jpg", full: "photos/2025-sofa.jpg", w: 1800, h: 1350 },
   { id: "2025-december", year: 2025, title: "한 해의 끝, 카페에서", kind: "밥모임", thumb: "photos/2025-december-t.jpg", full: "photos/2025-december.jpg", w: 1800, h: 1350 },
   { id: "2026-newyear", year: 2026, title: "새해 첫 모임", kind: "밥모임", thumb: "photos/2026-newyear-t.jpg", full: "photos/2026-newyear.jpg", w: 1800, h: 1350 }
 ];
