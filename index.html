@@ -28,12 +28,23 @@
   </div>
 </header>
 
-<nav class="yearbar" aria-label="연도 이동">
+<nav class="yearbar" aria-label="연도 이동과 보기 설정">
   <div class="inner">
     <ul id="yearNav"></ul>
     <div class="kinds" id="kindNav"></div>
+    <div class="tools">
+      <button type="button" id="editToggle" class="primary" aria-pressed="false">고치기</button>
+      <button type="button" id="addBtn" hidden>사진 추가</button>
+      <button type="button" id="exportBtn" hidden>내보내기</button>
+      <button type="button" id="resetBtn" hidden>처음 상태로</button>
+      <span class="flash" id="flash">저장됨</span>
+    </div>
   </div>
 </nav>
+
+<p class="editnote inner" id="editNote"></p>
+
+<input type="file" id="filePicker" accept="image/*" multiple hidden>
 
 <main class="inner" id="gallery"></main>
 
