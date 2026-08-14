@@ -48,7 +48,37 @@ git push -u origin main
 | `app.js` | 그리드 그리기, 갈래 거르기, 사진 크게 보기 |
 | `data.js` | 사진 목록 (연도 · 제목 · 갈래 · 파일 경로) |
 | `photos/` | 사진. `-t.jpg`는 그리드용 작은 것, 나머지는 크게 볼 때 쓰는 것 |
+| `api/save.js` | 고친 내용을 깃허브에 저장하는 서버 함수 |
 | `vercel.json` | 사진 캐시 설정 |
+
+## 처음 한 번만 — 고치기 켜기
+
+사이트에서 고친 내용을 **모두에게 보이게** 하려면 Vercel에 두 가지를 넣어야 합니다.
+넣기 전에는 고치기는 되지만 그 브라우저에만 남습니다.
+
+**1) 깃허브 토큰 만들기**
+
+<https://github.com/settings/personal-access-tokens/new> 에서 **Fine-grained token**을 만듭니다.
+
+- Repository access → **Only select repositories** → `forest-lady`
+- Permissions → Repository permissions → **Contents: Read and write**
+- 만료일은 원하는 대로 (1년 권장)
+
+만들면 `github_pat_...` 로 시작하는 값이 한 번만 보입니다. 복사해 두세요.
+
+**2) Vercel에 넣기**
+
+Vercel → `forest-lady` 프로젝트 → **Settings → Environment Variables** 에서 두 개를 추가합니다.
+
+| 이름 | 값 |
+|---|---|
+| `GITHUB_TOKEN` | 위에서 복사한 토큰 |
+| `EDIT_PASSWORD` | 고칠 때 물어볼 암호 (직접 정하세요) |
+
+넣은 뒤 **Deployments → 맨 위 배포 → Redeploy** 를 한 번 눌러야 적용됩니다.
+
+> 토큰과 암호는 Vercel 서버에만 있고 사이트 화면에는 나오지 않습니다.
+> 암호를 아는 사람만 고칠 수 있으니, 넷이서 쓸 암호 하나를 정해 공유하시면 됩니다.
 
 ## 사이트에서 바로 고치기
 
@@ -56,8 +86,11 @@ git push -u origin main
 갈래 목록에서 **「＋ 새 갈래…」** 를 고르면 갈래를 새로 만들 수 있고, **「빼기」** 로 사진을 목록에서 뺄 수 있습니다.
 **「사진 추가」** 로 새 사진을 넣거나, 사진 파일을 화면에 끌어다 놓아도 됩니다.
 
-고친 내용은 **그 브라우저에만** 저장됩니다. 사이트에 영구 반영하려면 **「내보내기」** 로 `forest-lady-edits.json`을 받아
-`data.js`에 옮겨 적고 `git push` 하면 됩니다. **「처음 상태로」** 는 고친 내용을 모두 버립니다.
+고친 내용은 먼저 **그 브라우저에만** 저장됩니다.
+**「사이트에 반영」** 을 누르고 암호를 넣으면 깃허브에 저장되고, Vercel이 다시 올려 **1분쯤 뒤 모두에게 같은 내용이 보입니다.**
+
+**「처음 상태로」** 는 아직 반영하지 않은 수정을 모두 버립니다.
+**「내보내기」** 는 고친 내용을 `forest-lady-edits.json` 파일로 받아둡니다 (백업용).
 
 ## data.js 직접 고치기
 

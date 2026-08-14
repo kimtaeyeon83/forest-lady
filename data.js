@@ -8,7 +8,7 @@ window.PHOTOS = [
   { id: "2019-cabin", year: 2019, title: "통나무집에서 보낸 밤", kind: "홈파티", thumb: "photos/2019-cabin-t.jpg", full: "photos/2019-cabin.jpg", w: 1440, h: 1080 },
   { id: "2021-haman", year: 2021, title: "함안 여성역량강화교육", kind: "교육", thumb: "photos/2021-haman-t.jpg", full: "photos/2021-haman.jpg", w: 1096, h: 1462 },
   { id: "2021-leadership", year: 2021, title: "여성역량강화교육", kind: "교육", thumb: "photos/2021-leadership-t.jpg", full: "photos/2021-leadership.jpg", w: 1096, h: 1462 },
-  { id: "2021-goseong", year: 2021, title: "고성 프리마켓", kind: "축제·부스", thumb: "photos/2021-goseong-t.jpg", full: "photos/2021-goseong.jpg", w: 1096, h: 1462 },
+  { id: "2022-goseong", year: 2022, title: "고성 프리마켓", kind: "축제·부스", thumb: "photos/2022-goseong-t.jpg", full: "photos/2022-goseong.jpg", w: 1096, h: 1462 },
   { id: "2022-drivemarket", year: 2022, title: "함양 드라이브마켓", kind: "축제·부스", thumb: "photos/2022-drivemarket-t.jpg", full: "photos/2022-drivemarket.jpg", w: 1440, h: 960 },
   { id: "2022-award", year: 2022, title: "꽃다발을 받은 날", kind: "대회·행사", thumb: "photos/2022-award-t.jpg", full: "photos/2022-award.jpg", w: 1800, h: 1350 },
   { id: "2022-nongppa", year: 2022, title: "농빠마켓", kind: "축제·부스", thumb: "photos/2022-nongppa-t.jpg", full: "photos/2022-nongppa.jpg", w: 711, h: 753 },

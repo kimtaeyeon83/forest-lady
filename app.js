@@ -85,6 +85,7 @@
     (store.edits[photo.id] = store.edits[photo.id] || {})[field] = value;
     photo[field] = value;
     saveStore();
+    paintEditBar();   // 첫 수정과 동시에 「사이트에 반영」이 나오도록
   }
 
   function removePhoto(photo) {
@@ -413,20 +414,92 @@
   $('#exportBtn').addEventListener('click', exportEdits);
   $('#resetBtn').addEventListener('click', resetAll);
 
+  /* ══════════════ 사이트에 반영 ══════════════
+     고친 내용을 서버로 보내 저장소에 커밋합니다. Vercel이 다시 배포하면
+     링크를 받은 모두가 같은 내용을 보게 됩니다. */
+  function publish() {
+    if (!hasChanges()) {
+      window.alert('바뀐 내용이 없습니다.');
+      return;
+    }
+
+    var pass = window.prompt('고치기 암호를 넣어주세요.', '');
+    if (pass === null) return;
+    if (!pass) { window.alert('암호를 넣어야 반영할 수 있습니다.'); return; }
+
+    var payload = PHOTOS.map(function (p) {
+      var row = {
+        id: p.id, year: p.year, title: p.title || '', kind: p.kind || '',
+        thumb: p.thumb, full: p.full, w: p.w, h: p.h
+      };
+      if (p.src) {
+        // 새로 추가한 사진은 파일부터 올려야 합니다
+        row.upload = { base64: p.src.replace(/^data:image\/\w+;base64,/, '') };
+      }
+      return row;
+    });
+
+    var btn = $('#publishBtn');
+    var was = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = '반영하는 중…';
+
+    fetch('/api/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pass, photos: payload })
+    }).then(function (r) {
+      return r.text().then(function (text) {
+        var j = null;
+        try { j = JSON.parse(text); } catch (e) { /* JSON 이 아니면 아래에서 안내합니다 */ }
+        if (!j) {
+          throw new Error(
+            r.status === 404
+              ? '저장 기능이 아직 켜지지 않았습니다. Vercel에 올린 뒤 GITHUB_TOKEN 과 EDIT_PASSWORD 를 넣어주세요.'
+              : '서버가 예상 밖의 답을 보냈습니다 (' + r.status + ').'
+          );
+        }
+        return { ok: r.ok, body: j };
+      });
+    }).then(function (r) {
+      if (!r.ok) throw new Error(r.body && r.body.error ? r.body.error : '반영하지 못했습니다.');
+
+      // 방금 보낸 내용을 원본으로 삼고, 브라우저에 쌓아둔 임시 수정은 비웁니다
+      BAKED = r.body.photos.slice();
+      store.edits = {}; store.added = []; store.deleted = [];
+      try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+      rebuild();
+      setEditing(false);
+
+      window.alert(
+        '반영했습니다. 사진 ' + r.body.count + '장' +
+        (r.body.uploaded ? ' (새 사진 ' + r.body.uploaded + '장)' : '') + '.\n' +
+        '다시 올라가는 데 1분쯤 걸립니다. 그 뒤 새로고침하면 모두에게 같은 내용이 보입니다.'
+      );
+    }).catch(function (err) {
+      window.alert('반영하지 못했습니다.\n\n' + err.message);
+    }).then(function () {
+      btn.disabled = false;
+      btn.textContent = was;
+    });
+  }
+
+  $('#publishBtn').addEventListener('click', publish);
+
   /* ══════════════ 고치기 켜고 끄기 ══════════════ */
   function paintEditBar() {
     $('#addBtn').hidden = !editing;
+    $('#publishBtn').hidden = !hasChanges();
     $('#exportBtn').hidden = !editing && !hasChanges();
     $('#resetBtn').hidden = !hasChanges();
     $('#editToggle').textContent = editing ? '고치기 끝내기' : '고치기';
     $('#editToggle').setAttribute('aria-pressed', editing ? 'true' : 'false');
 
     var note = $('#editNote');
-    if (editing) {
-      note.textContent = '제목·연도·갈래를 바로 고칠 수 있습니다. 고친 내용은 이 브라우저에만 저장되니, '
-        + '다 하시면 「내보내기」로 파일을 받아 저에게 주세요. 사이트에 영구 반영해 드립니다.';
-    } else if (hasChanges()) {
-      note.textContent = '고친 내용이 이 브라우저에 남아 있습니다. 「내보내기」로 파일을 받아 저에게 주시면 사이트에 반영됩니다.';
+    if (hasChanges()) {
+      note.textContent = '아직 이 브라우저에만 저장돼 있습니다. 「사이트에 반영」을 누르면 모두가 보는 사이트에 올라갑니다.';
+    } else if (editing) {
+      note.textContent = '제목·연도·갈래를 바로 고칠 수 있습니다. 사진을 끌어다 놓아 추가할 수도 있고, 「빼기」로 뺄 수 있습니다.';
     } else {
       note.textContent = '';
     }

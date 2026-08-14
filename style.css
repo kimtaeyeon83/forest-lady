@@ -181,6 +181,13 @@ img { max-width: 100%; display: block; }
   background: var(--berry); border-color: var(--berry); color: #fff; font-weight: 600;
 }
 
+.tools button.publish {
+  background: var(--fern); border-color: var(--fern); color: var(--surface); font-weight: 600;
+}
+
+.tools button.publish:hover { filter: brightness(1.08); color: var(--surface); }
+.tools button.publish[disabled] { opacity: .55; cursor: default; filter: none; }
+
 .tools .flash { font-size: 12px; color: var(--fern); opacity: 0; transition: opacity .25s ease; }
 .tools .flash.on { opacity: 1; }
 
