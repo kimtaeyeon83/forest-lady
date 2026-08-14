@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>포레스트 레이디 — 2018부터의 기록</title>
+<meta name="description" content="태연 · 은윤 · 유선 · 수진, 2018년부터 함께한 기록">
+<meta property="og:title" content="포레스트 레이디">
+<meta property="og:description" content="태연 · 은윤 · 유선 · 수진, 2018년부터 함께한 기록">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌲</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="inner">
+    <p class="eyebrow">Forest Lady</p>
+    <h1>포레스트 레이디</h1>
+    <p class="lede">2018년에 시작해 지금까지, 넷이 함께 지나온 계절들.</p>
+    <ul class="roster">
+      <li><span class="dot d1"></span>태연</li>
+      <li><span class="dot d2"></span>은윤</li>
+      <li><span class="dot d3"></span>유선</li>
+      <li><span class="dot d4"></span>수진</li>
+    </ul>
+    <dl class="tally" id="tally"></dl>
+  </div>
+</header>
+
+<nav class="yearbar" aria-label="연도 이동">
+  <div class="inner">
+    <ul id="yearNav"></ul>
+    <div class="kinds" id="kindNav"></div>
+  </div>
+</nav>
+
+<main class="inner" id="gallery"></main>
+
+<footer class="foot">
+  <div class="inner">
+    <p>태연 · 은윤 · 유선 · 수진 — 2018년부터</p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="사진 크게 보기" hidden>
+  <button class="lb-close" id="lbClose" type="button" aria-label="닫기">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="이전 사진">‹</button>
+  <figure class="lb-stage">
+    <img id="lbImg" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="다음 사진">›</button>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
