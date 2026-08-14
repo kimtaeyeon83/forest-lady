@@ -19,9 +19,10 @@
   --m3: #3E93A0;
   --m4: #96832A;
 
-  --font-display: 'Nanum Myeongjo', 'AppleMyungjo', 'Batang', 'Iowan Old Style', Georgia, serif;
-  --font-body: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', system-ui, sans-serif;
-  --font-num: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  /* 손글씨체 — 큰 제목은 펜글씨, 나머지는 읽기 편한 손글씨 */
+  --font-display: 'Nanum Pen Script', 'Gaegu', 'Malgun Gothic', cursive;
+  --font-body: 'Gaegu', 'Nanum Pen Script', 'Malgun Gothic', 'Segoe UI', system-ui, sans-serif;
+  --font-num: 'Gaegu', 'Malgun Gothic', system-ui, sans-serif;
 
   --shadow: 0 1px 2px rgba(20,35,26,.05), 0 12px 28px -18px rgba(20,60,35,.30);
   --shadow-lift: 0 2px 6px rgba(20,35,26,.07), 0 18px 40px -20px rgba(20,60,35,.42);
@@ -76,8 +77,8 @@ body {
   background-repeat: no-repeat;
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.65;
+  font-size: 18px;          /* 손글씨체는 작게 보여서 한 단계 키웠습니다 */
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -88,7 +89,7 @@ img { max-width: 100%; display: block; }
 .inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
 .eyebrow {
-  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  font-size: 13px; letter-spacing: .2em; text-transform: uppercase;
   color: var(--fern); font-weight: 700; margin: 0;
 }
 
@@ -97,9 +98,9 @@ img { max-width: 100%; display: block; }
 
 .masthead h1 {
   font-family: var(--font-display);
-  font-size: clamp(34px, 6vw, 58px);
-  line-height: 1.1; letter-spacing: -0.01em;
-  margin: 10px 0 0; text-wrap: balance;
+  font-size: clamp(46px, 8vw, 78px);
+  line-height: 1.05; letter-spacing: 0;
+  margin: 6px 0 0; text-wrap: balance;
 }
 
 .masthead .lede { color: var(--ink-2); margin: 10px 0 0; max-width: 48ch; }
@@ -108,7 +109,7 @@ img { max-width: 100%; display: block; }
 
 .roster li {
   display: inline-flex; align-items: center; gap: 7px;
-  font-size: 14px; font-weight: 600; padding: 5px 13px 5px 10px;
+  font-size: 16px; font-weight: 700; padding: 4px 14px 4px 11px;
   border: 1px solid var(--line-2); border-radius: 999px;
   background: var(--surface); box-shadow: var(--shadow);
 }
@@ -122,12 +123,12 @@ img { max-width: 100%; display: block; }
 .tally { display: flex; flex-wrap: wrap; gap: 34px; margin: 26px 0 0; padding: 0; }
 
 .tally div { margin: 0; }
-.tally dt { font-size: 12px; color: var(--ink-3); letter-spacing: .04em; }
+.tally dt { font-size: 14px; color: var(--ink-3); letter-spacing: .04em; }
 .tally dd {
-  margin: 2px 0 0; font-family: var(--font-num); font-variant-numeric: tabular-nums;
-  font-size: 28px; line-height: 1.15;
+  margin: 2px 0 0; font-family: var(--font-num); font-weight: 700;
+  font-size: 36px; line-height: 1.15;
 }
-.tally dd small { font-family: var(--font-body); font-size: 13px; color: var(--ink-3); margin-left: 3px; }
+.tally dd small { font-family: var(--font-body); font-size: 15px; font-weight: 400; color: var(--ink-3); margin-left: 4px; }
 
 /* ───────────── sticky bar ───────────── */
 .yearbar {
@@ -146,8 +147,8 @@ img { max-width: 100%; display: block; }
 
 .yearbar a {
   display: inline-block; text-decoration: none;
-  font-family: var(--font-num); font-variant-numeric: tabular-nums;
-  font-size: 14px; color: var(--ink-3); padding: 4px 9px; border-radius: 999px;
+  font-family: var(--font-num); font-weight: 700;
+  font-size: 17px; color: var(--ink-3); padding: 2px 11px; border-radius: 999px;
 }
 
 .yearbar a:hover { color: var(--fern); background: var(--sunk); }
@@ -156,7 +157,7 @@ img { max-width: 100%; display: block; }
 .kinds { display: flex; flex-wrap: wrap; gap: 5px; }
 
 .kinds button {
-  font: inherit; font-size: 12.5px; padding: 3px 12px; cursor: pointer;
+  font: inherit; font-size: 15px; padding: 2px 13px; cursor: pointer;
   border: 1px solid var(--line-2); border-radius: 999px;
   background: var(--surface); color: var(--ink-3);
 }
@@ -170,7 +171,7 @@ img { max-width: 100%; display: block; }
 .tools { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; align-items: center; }
 
 .tools button {
-  font: inherit; font-size: 12.5px; padding: 4px 13px; cursor: pointer;
+  font: inherit; font-size: 15px; padding: 3px 14px; cursor: pointer;
   border: 1px solid var(--line-2); border-radius: 999px;
   background: var(--surface); color: var(--ink-2);
 }
@@ -188,12 +189,12 @@ img { max-width: 100%; display: block; }
 .tools button.publish:hover { filter: brightness(1.08); color: var(--surface); }
 .tools button.publish[disabled] { opacity: .55; cursor: default; filter: none; }
 
-.tools .flash { font-size: 12px; color: var(--fern); opacity: 0; transition: opacity .25s ease; }
+.tools .flash { font-size: 14px; color: var(--fern); opacity: 0; transition: opacity .25s ease; }
 .tools .flash.on { opacity: 1; }
 
 /* 고정 바가 길어지지 않도록 안내문은 바 바깥에 둡니다 */
 .editnote {
-  margin: 0; padding-top: 12px; font-size: 12.5px; color: var(--ink-3); max-width: 74ch;
+  margin: 0; padding-top: 12px; font-size: 15px; color: var(--ink-3); max-width: 74ch;
 }
 
 .editnote:empty { display: none; }
@@ -204,20 +205,24 @@ img { max-width: 100%; display: block; }
 .year-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
 
 .year-head h2 {
-  font-family: var(--font-num); font-variant-numeric: tabular-nums;
-  font-size: 40px; line-height: 1; margin: 0; font-weight: 400; letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-size: 56px; line-height: 1; margin: 0; font-weight: 400; letter-spacing: 0;
+  color: var(--fern);
 }
 
-.year-head .n { font-size: 12.5px; color: var(--ink-3); letter-spacing: .03em; }
+.year-head .n { font-size: 15px; color: var(--ink-3); letter-spacing: .03em; }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 22px 16px; margin: 0 0 28px; padding: 0; list-style: none;
+  align-items: start;
 }
 
 .tile { margin: 0; }
 
+/* 칸 크기는 모두 같게 두어 줄이 맞고, 사진은 잘라내지 않고 안에 통째로 담습니다.
+   세로 사진은 좌우가, 가로 사진은 위아래가 남으며 그 자리는 연한 바탕으로 둡니다. */
 .tile button.shot {
   display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in;
   background: var(--sunk); border-radius: 6px; overflow: hidden;
@@ -227,18 +232,22 @@ img { max-width: 100%; display: block; }
 
 .tile button.shot:hover { box-shadow: var(--shadow-lift); transform: translateY(-2px); }
 
-.tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2,.7,.3,1); }
-.tile button.shot:hover img { transform: scale(1.05); }
+.tile img {
+  width: 100%; height: 100%; object-fit: contain;
+  transition: transform .5s cubic-bezier(.2,.7,.3,1);
+}
+
+.tile button.shot:hover img { transform: scale(1.03); }
 
 .tile figcaption { margin-top: 10px; }
 
-.tile .t { font-family: var(--font-display); font-size: 15px; line-height: 1.4; color: var(--ink); text-wrap: balance; }
+.tile .t { font-family: var(--font-display); font-size: 22px; line-height: 1.25; color: var(--ink); text-wrap: balance; }
 
 .tile .k {
-  display: inline-block; margin-top: 5px;
-  font-size: 10.5px; font-weight: 700; letter-spacing: .06em;
+  display: inline-block; margin-top: 4px;
+  font-size: 13px; font-weight: 700; letter-spacing: .04em;
   color: var(--fern); background: var(--sunk);
-  padding: 2px 8px; border-radius: 999px;
+  padding: 1px 9px; border-radius: 999px;
 }
 
 /* ───────────── 고치는 중 ───────────── */
@@ -252,7 +261,7 @@ img { max-width: 100%; display: block; }
 
 .edit-fields input,
 .edit-fields select {
-  font: inherit; font-size: 13.5px; width: 100%;
+  font: inherit; font-size: 16px; width: 100%;
   color: var(--ink); background: var(--surface);
   border: 1px solid var(--line-2); border-radius: 4px; padding: 5px 8px;
 }
@@ -269,7 +278,7 @@ img { max-width: 100%; display: block; }
 .edit-actions { display: flex; gap: 6px; }
 
 .edit-actions button {
-  font: inherit; font-size: 11.5px; padding: 3px 9px; cursor: pointer;
+  font: inherit; font-size: 14px; padding: 2px 10px; cursor: pointer;
   border: 1px solid var(--line-2); border-radius: 4px;
   background: var(--surface); color: var(--ink-3);
 }
@@ -282,7 +291,7 @@ img { max-width: 100%; display: block; }
 .addbox {
   grid-column: 1 / -1;
   border: 2px dashed var(--line-2); border-radius: 6px;
-  padding: 22px; text-align: center; color: var(--ink-3); font-size: 14px;
+  padding: 22px; text-align: center; color: var(--ink-3); font-size: 16px;
 }
 
 .addbox b { display: block; color: var(--ink-2); margin-bottom: 4px; }
@@ -303,7 +312,7 @@ img { max-width: 100%; display: block; }
 
 .lb-stage img { max-width: 100%; max-height: calc(100vh - 150px); object-fit: contain; border-radius: 4px; }
 
-.lb-stage figcaption { color: #DEE9E0; font-size: 14px; text-align: center; }
+.lb-stage figcaption { color: #DEE9E0; font-size: 18px; text-align: center; }
 
 .lb-stage figcaption b {
   font-family: var(--font-num); font-variant-numeric: tabular-nums;
@@ -311,7 +320,7 @@ img { max-width: 100%; display: block; }
 }
 
 .lb-stage figcaption .c {
-  display: block; font-size: 12px; color: #8A9B8E; margin-top: 3px;
+  display: block; font-size: 14px; color: #8A9B8E; margin-top: 3px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -329,7 +338,7 @@ img { max-width: 100%; display: block; }
 /* ───────────── footer ───────────── */
 .foot {
   border-top: 1px solid var(--line); margin-top: 20px; padding: 26px 0 60px;
-  color: var(--ink-3); font-size: 13px; text-align: center;
+  color: var(--ink-3); font-size: 15px; text-align: center;
 }
 
 .foot p { margin: 0; }
@@ -346,7 +355,7 @@ img { max-width: 100%; display: block; }
   .inner { padding: 0 16px; }
   .masthead { padding: 40px 0 24px; }
   .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 18px 10px; }
-  .year-head h2 { font-size: 30px; }
+  .year-head h2 { font-size: 42px; }
   .tally { gap: 22px; }
   .tally dd { font-size: 23px; }
 
