@@ -120,9 +120,10 @@
     var seen = {};
     PHOTOS.forEach(function (p) { seen[p.year] = 1; });
     var data = [
-      ['함께한 해', years().length, '년째'],
+      // 시작한 해를 세지 않고 흐른 햇수로 셉니다 (2018년 시작 → 2026년이면 8년)
+      ['함께한 지', END_YEAR - START_YEAR, '년'],
       ['모아둔 사진', PHOTOS.length, '장'],
-      ['기록된 해', Object.keys(seen).length, '해']
+      ['기록된 해', Object.keys(seen).length, '개']
     ];
     var dl = $('#tally');
     dl.innerHTML = '';
